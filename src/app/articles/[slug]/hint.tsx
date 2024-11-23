@@ -1,14 +1,13 @@
-import React, { useEffect } from "react";
-import { MARKS } from "@contentful/rich-text-types";
+import React, { ReactNode } from "react";
+import { Document, MARKS } from "@contentful/rich-text-types";
 
-import * as Prism from "prismjs";
-import "prismjs/components/prism-php";
-// import InfoIcon from "../icons/info-icon";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import PrismLoader from "@/components/prismLoader";
 
 const options = {
   renderMark: {
-    [MARKS.BOLD]: (text: string) => <b>{text}</b>,
-    [MARKS.CODE]: (code: string) => <code>{code}</code>,
+    [MARKS.BOLD]: (text: ReactNode) => <b>{text}</b>,
+    [MARKS.CODE]: (code: any) => <code>{code}</code>,
   },
 };
 
@@ -20,13 +19,11 @@ export const Hint = ({
 }: {
   title: string;
   slug: string;
-  content: any;
+  content: {
+    json: Document;
+  };
   type: string;
 }) => {
-  useEffect(() => {
-    Prism.highlightAll();
-  });
-
   return (
     <div>
       <a id={slug} href={`#${slug}`} className={type}>
@@ -34,8 +31,9 @@ export const Hint = ({
         <span>{title}</span>
       </a>
       <div className={`${type} language-javascript`}>
-        {/* {renderRichText(content, options)} */}
+        {documentToReactComponents(content.json, options)}
       </div>
+      <PrismLoader />
     </div>
   );
 };

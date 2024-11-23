@@ -37,7 +37,7 @@ export default function RootLayout({
       lang="en"
       className={`antialiased ${inter.variable} ${lato.variable} ${merriweather.variable}`}
     >
-      <body>
+      <body suppressHydrationWarning={true}>
         <main className="container mx-auto min-h-screen p-6 pt-20 md:p-8 lg:p-12">
           {children}
         </main>

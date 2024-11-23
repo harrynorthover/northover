@@ -1,16 +1,17 @@
 import { getArticle } from "@/lib/api";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { Metadata } from "next";
-import { ArticleRenderConfig } from "./article.config";
+import { createRenderOptions } from "./article.config";
 
 type ArticlePageProps = {
-  params: { url: string };
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateMetadata({
   params,
 }: ArticlePageProps): Promise<Metadata> {
-  const article = await getArticle(params.url);
+  const { slug } = await params;
+  const article = await getArticle(slug);
 
   return {
     title: article.title,
@@ -20,10 +21,11 @@ export async function generateMetadata({
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
-  const article = await getArticle(params.url);
+  const { slug } = await params;
+  const article = await getArticle(slug);
 
   return (
-    <article>
+    <article className="max-w-6xl">
       <header>
         <h1>{article.title}</h1>
         <p>{article.introduction}</p>
@@ -31,8 +33,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           <img src={article.heroImage.url} alt={article.title} />
         )}
       </header>
+
       <section>
-        <h2>Authors</h2>
         <ul>
           {article.authorCollection.items.map((author, index) => (
             <li key={index}>
@@ -60,9 +62,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           ))}
         </ul>
       </section>
+
       <section>
-        <h2>Content</h2>
-        {documentToReactComponents(article.content.json, ArticleRenderConfig)}
+        {documentToReactComponents(
+          article.content.json,
+          createRenderOptions(article.content.links)
+        )}
       </section>
     </article>
   );

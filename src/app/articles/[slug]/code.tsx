@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
-import * as Prism from "prismjs";
-import "prismjs/components/prism-php";
+import PrismLoader from "@/components/prismLoader";
 
 export const CodeBlock = ({
   code,
@@ -15,12 +13,8 @@ export const CodeBlock = ({
 }) => {
   const id = title.replace(/[\s:,]+/g, "-").toLowerCase();
 
-  useEffect(() => {
-    Prism.highlightAll();
-  });
-
   return (
-    <section>
+    <section suppressHydrationWarning={true}>
       <a id={id} href={`#${id}`}>
         {title}
         {/* <LinkIcon className="icon" /> */}
@@ -29,6 +23,7 @@ export const CodeBlock = ({
       <pre className={`language-${language} line-numbers`}>
         <code>{code}</code>
       </pre>
+      <PrismLoader />
     </section>
   );
 };

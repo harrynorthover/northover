@@ -1,11 +1,4 @@
 import React from "react";
-import StarSVG from "../../static/svg/star.svg";
-import WindowsSVG from "../../static/svg/windows.svg";
-import LinuxSVG from "../../static/svg/linux.svg";
-
-import HTBPNG from "../../static/htb.png";
-import TryHackMePNG from "../../static/thm.png";
-import OffSecSVG from "../../static/svg/offsec.svg";
 import Tags from "@/components/tags";
 import Image from "next/image";
 
@@ -21,11 +14,12 @@ type BoxSummaryProps = {
 };
 
 const renderStar = (selected: boolean = false) => (
-  <StarSVG
-    width="16px"
-    height="24px"
-    fill={selected ? "gold" : "grey"}
+  <Image
+    src={"/svg/star.svg"}
+    width={16}
+    height={24}
     className="inline-block"
+    alt={""}
   />
 );
 
@@ -33,26 +27,66 @@ const renderStars = (amount: number = 0) => {
   return Array.from({ length: 5 }, (_, i) => renderStar(i < amount));
 };
 
-const renderOSLogo = (platform: string) => {
+const renderOSLogo = (platform: string): JSX.Element | string => {
   switch (platform.toLowerCase()) {
     case "linux":
-      return <LinuxSVG width="25px" height="24px" className="inline-block" />;
+      return (
+        <img
+          src="/svg/linux.svg"
+          alt="Linux"
+          width="25"
+          height="24"
+          className="inline-block"
+        />
+      );
     case "windows":
-      return <WindowsSVG width="25px" height="24px" className="inline-block" />;
+      return (
+        <img
+          src="/svg/windows.svg"
+          alt="Windows"
+          width="25"
+          height="24"
+          className="inline-block"
+        />
+      );
     default:
       return platform;
   }
 };
 
-const renderCompanyLogo = (company: string) => {
+const renderCompanyLogo = (company: string): JSX.Element | string => {
   switch (company.toLowerCase()) {
     case "offsec - practise":
     case "offsec - play":
-      return <OffSecSVG width="25px" height="24px" alt={company} />;
+      return (
+        <img
+          src="/svg/offsec.svg"
+          alt={company}
+          width="25"
+          height="24"
+          className="inline-block"
+        />
+      );
     case "try hack me":
-      return <Image src={TryHackMePNG} alt={company} className="w-6 h-6" />;
+      return (
+        <img
+          src="/thm.png"
+          alt={company}
+          width="24"
+          height="24"
+          className="inline-block"
+        />
+      );
     case "hackthebox":
-      return <Image src={HTBPNG} alt={company} className="w-6 h-6" />;
+      return (
+        <img
+          src="/htb.png"
+          alt={company}
+          width="24"
+          height="24"
+          className="inline-block"
+        />
+      );
     default:
       return company;
   }

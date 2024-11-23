@@ -1,94 +1,169 @@
 import { Article, HomepageData } from "@/types/data";
 
-const ARTICLE_FRAGMENT = `
-fragment ArticleFragment on Article {
-  title
-  tags
-  introduction
-  enableComments
-  url
-  authorCollection {
-    items {
-      name
-      jobTitle
-      personalWebsite
-      companyWebsite
-      about {
-        json
-      }
-    }
-  }
-  previewImage {
-    url
-  }
-  heroImage {
-    url
-  }
-  content {
-    json
-  }
-}
-`;
-
-const GLOBAL_QUERY = `
-query getHomepageData {
-  general(id:"2RZUrjr3tBiGAIXFpjNrYC") {
+const ARTICLE_FRAGMENT = /* GraphQL */ `
+  fragment ArticleFragment on Article {
     title
+    tags
     introduction
-    contactEmail
-    backgroundsCollection {
-      items {
-        url
-      }
-    }
-    linksCollection {
+    enableComments
+    url
+    authorCollection {
       items {
         name
-        url
-        icon {
-          url
+        jobTitle
+        personalWebsite
+        companyWebsite
+        about {
+          json
         }
-        description
+      }
+    }
+    previewImage {
+      url
+    }
+    heroImage {
+      url
+    }
+    content {
+      json
+      links {
+        assets {
+          block {
+            contentType
+            url
+            sys {
+              id
+            }
+          }
+          hyperlink {
+            title
+            description
+            contentType
+            fileName
+            size
+            url
+            width
+            height
+          }
+        }
+        entries {
+          inline {
+            sys {
+              id
+            }
+          }
+          block {
+            __typename
+            sys {
+              id
+            }
+            ... on CodeBlock {
+              language
+              title
+              description
+              code
+              slug
+              _id
+            }
+            ... on Resources {
+              __typename
+              title
+              description
+              url
+            }
+            ... on CodeBlock {
+              __typename
+              description
+              title
+              code
+              language
+            }
+            ... on Hint {
+              __typename
+              title
+              type
+              content {
+                json
+              }
+              slug
+            }
+            ... on Box {
+              __typename
+              name
+              type
+              tags
+              difficulty
+              platform
+              points
+              rating
+              url
+            }
+          }
+        }
       }
     }
   }
-  articleCollection(limit: 3, order: sys_publishedAt_DESC) {
-    items {
-      ...ArticleFragment
-    }
-  }
-  seo(id:"2KZdiOQcUpgZbJPtHc8QZG") {
-    siteTitle
-    siteDescription
-    keywords
-  }
-}
-
-${ARTICLE_FRAGMENT}
 `;
 
-const ALL_ARTICLES_QUERY = `
-query getAllArticles {
-  articleCollection {
-    items {
-      ...ArticleFragment
+const GLOBAL_QUERY = /* GraphQL */ `
+  query getHomepageData {
+    general(id: "2RZUrjr3tBiGAIXFpjNrYC") {
+      title
+      introduction
+      contactEmail
+      backgroundsCollection {
+        items {
+          url
+        }
+      }
+      linksCollection {
+        items {
+          name
+          url
+          icon {
+            url
+          }
+          description
+        }
+      }
+    }
+    articleCollection(limit: 3, order: sys_publishedAt_DESC) {
+      items {
+        ...ArticleFragment
+      }
+    }
+    seo(id: "2KZdiOQcUpgZbJPtHc8QZG") {
+      siteTitle
+      siteDescription
+      keywords
     }
   }
-}
 
-${ARTICLE_FRAGMENT}
+  ${ARTICLE_FRAGMENT}
 `;
 
-const ARTICLE_QUERY = `
-query getArticle($url: String!) {
-  articleCollection(where: { url: $url }) {
-    items {
-      ...ArticleFragment
+const ALL_ARTICLES_QUERY = /* GraphQL */ `
+  query getAllArticles {
+    articleCollection {
+      items {
+        ...ArticleFragment
+      }
     }
   }
-}
 
-${ARTICLE_FRAGMENT}
+  ${ARTICLE_FRAGMENT}
+`;
+
+const ARTICLE_QUERY = /* GraphQL */ `
+  query getArticle($slug: String!, $preview: Boolean) {
+    articleCollection(where: { url: $slug }, preview: $preview, limit: 2) {
+      items {
+        ...ArticleFragment
+      }
+    }
+  }
+
+  ${ARTICLE_FRAGMENT}
 `;
 
 async function fetchGraphQL<T>(
@@ -114,7 +189,6 @@ async function fetchGraphQL<T>(
   );
 
   const json = await response.json();
-
   return json.data;
 }
 
@@ -123,11 +197,17 @@ export async function getGlobalContent(preview = false) {
 }
 
 export async function getArticles(preview = false) {
-  return fetchGraphQL<Article[]>(ALL_ARTICLES_QUERY, preview);
+  return fetchGraphQL<{
+    articleCollection: { items: Article[] };
+  }>(ALL_ARTICLES_QUERY, preview);
 }
 
 export async function getArticle(url: string, preview = false) {
-  return fetchGraphQL<Article>(ARTICLE_QUERY, preview, {
-    url,
+  return fetchGraphQL<{
+    articleCollection: { items: Article[] };
+  }>(ARTICLE_QUERY, preview, {
+    slug: url,
+  }).then((data) => {
+    return data.articleCollection.items[0];
   });
 }

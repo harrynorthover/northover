@@ -1,6 +1,7 @@
 import { getGlobalContent } from "@/lib/api";
 import { draftMode } from "next/headers";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function Home() {
   const { isEnabled } = await draftMode();
@@ -18,7 +19,9 @@ export default async function Home() {
         <ul>
           {articleCollection.items.map((article) => (
             <li key={article.url}>
-              <h3>{article.title}</h3>
+              <h3>
+                <Link href={`${article.url}`}>{article.title}</Link>
+              </h3>
               <p>{article.introduction}</p>
             </li>
           ))}

@@ -7,7 +7,7 @@ export default async function ArticlesPage() {
     <div>
       <h1>Articles</h1>
       <ul>
-        {articles.map((article) => (
+        {articles.articleCollection.items.map((article) => (
           <li key={article.url}>
             <a href={`/articles/${article.url}`}>
               <h2>{article.title}</h2>
