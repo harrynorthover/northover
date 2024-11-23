@@ -103,57 +103,57 @@ const BoxSummary: React.FC<BoxSummaryProps> = ({
   url,
 }) => {
   return (
-    <div className="block border border-gray-800 rounded-lg overflow-hidden transition-all duration-200 hover:bg-gray-700">
-      <div className="grid grid-cols-[1fr,60px,60px,110px,110px,auto] overflow-x-auto">
-        <div className="whitespace-nowrap">
-          <span className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
+    <div className="block border max-w-4xl border-gray-800 rounded-lg overflow-hidden transition-all duration-200">
+      <div className="grid h-full grid-cols-[1fr,60px,60px,110px,110px,auto] overflow-x-auto">
+        <div className="whitespace-nowrap flex flex-col">
+          <div className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
             Box
-          </span>
-          <span className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800">
+          </div>
+          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow">
             <a href={url} target="_blank">
               {name}
             </a>
-          </span>
+          </div>
         </div>
-        <div className="whitespace-nowrap">
-          <span className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
+        <div className="whitespace-nowrap flex flex-col">
+          <div className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
             Type
-          </span>
-          <span className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800">
+          </div>
+          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow">
             {renderOSLogo(type)}
-          </span>
+          </div>
         </div>
-        <div className="whitespace-nowrap">
-          <span className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
+        <div className="whitespace-nowrap flex flex-col">
+          <div className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
             Plat.
-          </span>
-          <span className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800">
+          </div>
+          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow">
             {renderCompanyLogo(platform)}
-          </span>
+          </div>
         </div>
-        <div className="whitespace-nowrap">
-          <span className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
+        <div className="whitespace-nowrap flex flex-col">
+          <div className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
             Difficulty
-          </span>
-          <span className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800">
+          </div>
+          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow">
             <Tags tags={[difficulty]} />
-          </span>
+          </div>
         </div>
-        <div className="whitespace-nowrap">
-          <span className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
+        <div className="whitespace-nowrap flex flex-col">
+          <div className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
             Rating
-          </span>
-          <span className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800">
+          </div>
+          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow">
             {renderStars(rating)}
-          </span>
+          </div>
         </div>
-        <div className="whitespace-nowrap">
-          <span className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
+        <div className="whitespace-nowrap flex flex-col">
+          <div className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
             Tags
-          </span>
-          <span className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800">
+          </div>
+          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow">
             <Tags tags={tags} />
-          </span>
+          </div>
         </div>
       </div>
     </div>

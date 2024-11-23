@@ -105,6 +105,33 @@ const ARTICLE_FRAGMENT = /* GraphQL */ `
   }
 `;
 
+const ARTICLE_PREVIEW_FRAGMENT = /* GraphQL */ `
+  fragment ArticlePreviewFragment on Article {
+    title
+    tags
+    introduction
+    enableComments
+    url
+    authorCollection {
+      items {
+        name
+        jobTitle
+        personalWebsite
+        companyWebsite
+        about {
+          json
+        }
+      }
+    }
+    previewImage {
+      url
+    }
+    heroImage {
+      url
+    }
+  }
+`;
+
 const GLOBAL_QUERY = /* GraphQL */ `
   query getHomepageData {
     general(id: "2RZUrjr3tBiGAIXFpjNrYC") {
@@ -146,12 +173,12 @@ const ALL_ARTICLES_QUERY = /* GraphQL */ `
   query getAllArticles {
     articleCollection {
       items {
-        ...ArticleFragment
+        ...ArticlePreviewFragment
       }
     }
   }
 
-  ${ARTICLE_FRAGMENT}
+  ${ARTICLE_PREVIEW_FRAGMENT}
 `;
 
 const ARTICLE_QUERY = /* GraphQL */ `
@@ -189,6 +216,7 @@ async function fetchGraphQL<T>(
   );
 
   const json = await response.json();
+  console.log(json);
   return json.data;
 }
 
@@ -198,8 +226,10 @@ export async function getGlobalContent(preview = false) {
 
 export async function getArticles(preview = false) {
   return fetchGraphQL<{
-    articleCollection: { items: Article[] };
-  }>(ALL_ARTICLES_QUERY, preview);
+    articleCollection: { items: Omit<Article, "content">[] };
+  }>(ALL_ARTICLES_QUERY, preview).then((data) => {
+    return data.articleCollection.items;
+  });
 }
 
 export async function getArticle(url: string, preview = false) {

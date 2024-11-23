@@ -9,30 +9,34 @@ export default async function Home() {
 
   return (
     <>
-      <header>
-        <h1>{general.title}</h1>
+      <header className="mt-14">
+        <Image
+          src="/signatureH.png"
+          alt="alt"
+          width={50}
+          height={50}
+          className="-ml-4"
+        />
         <p className="max-w-5xl">{general.introduction}</p>
       </header>
 
-      <section>
-        <h2>Articles</h2>
-        <ul>
+      <section className="my-8 py-8 pb-0">
+        <div>
           {articleCollection.items.map((article) => (
-            <li key={article.url}>
-              <h3>
-                <Link href={`${article.url}`}>{article.title}</Link>
-              </h3>
+            <div key={article.url} className="max-w-[50%] pb-8">
+              <h2>
+                <Link href={`/articles/${article.url}`}>{article.title}</Link>
+              </h2>
               <p>{article.introduction}</p>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </section>
 
       <section>
-        <h2>Links</h2>
-        <ul className="flex">
+        <div className="flex gap-4">
           {general.linksCollection.items.map((link) => (
-            <li key={link.url} className="w-[200px]">
+            <div key={link.url} className="w-[200px]">
               <a href={link.url} target="_blank" rel="noopener noreferrer">
                 <Image
                   width={30}
@@ -40,12 +44,12 @@ export default async function Home() {
                   src={link.icon.url}
                   alt={link.name}
                 />
-                {link.name}
-                <span>{link.description}</span>
+                <span className="block">{link.name}</span>
+                <span className="block">{link.description}</span>
               </a>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </section>
     </>
   );

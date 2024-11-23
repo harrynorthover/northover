@@ -44,7 +44,16 @@ export function createRenderOptions(links: Article["content"]["links"]) {
     },
     renderNode: {
       [BLOCKS.HEADING_1]: (_: any, children: ReactNode) => <h1>{children}</h1>,
-      [BLOCKS.HEADING_2]: (_: any, children: ReactNode) => <h2>{children}</h2>,
+      [BLOCKS.HEADING_2]: (_: any, children: ReactNode) => (
+        <h2 className="border-b border-b-gray-800 pt-12 pb-4 mb-2 block">
+          {children}
+        </h2>
+      ),
+      [BLOCKS.HEADING_3]: (_: any, children: ReactNode) => (
+        <h3 className="border-b border-b-gray-800 pt-8 pb-4 mb-2 block">
+          {children}
+        </h3>
+      ),
       [BLOCKS.PARAGRAPH]: (_: any, children: ReactNode) => <p>{children}</p>,
       [BLOCKS.UL_LIST]: (_: any, children: ReactNode) => <ul>{children}</ul>,
 
@@ -58,6 +67,7 @@ export function createRenderOptions(links: Article["content"]["links"]) {
             src={url}
             alt={title || description || "Embedded Asset"}
             title={title || description}
+            className="w-full my-4 rounded-md block"
           />
         );
       },
