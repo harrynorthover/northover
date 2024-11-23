@@ -1,3 +1,4 @@
+import Tags from "@/components/tags";
 import { getGlobalContent } from "@/lib/api";
 import { draftMode } from "next/headers";
 import Image from "next/image";
@@ -13,7 +14,7 @@ export default async function Home() {
         <Image
           src="/signatureH.png"
           alt="alt"
-          width={50}
+          width={60}
           height={50}
           className="-ml-4"
         />
@@ -27,6 +28,7 @@ export default async function Home() {
               <h2>
                 <Link href={`/articles/${article.url}`}>{article.title}</Link>
               </h2>
+              <Tags tags={article.tags} />
               <p>{article.introduction}</p>
             </div>
           ))}
@@ -37,15 +39,26 @@ export default async function Home() {
         <div className="flex gap-4">
           {general.linksCollection.items.map((link) => (
             <div key={link.url} className="w-[200px]">
-              <a href={link.url} target="_blank" rel="noopener noreferrer">
-                <Image
-                  width={30}
-                  height={30}
-                  src={link.icon.url}
-                  alt={link.name}
-                />
-                <span className="block">{link.name}</span>
-                <span className="block">{link.description}</span>
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex gap-2"
+              >
+                <div>
+                  <h3 className="bloc flex align-middle">
+                    <Image
+                      width={15}
+                      height={30}
+                      src={link.icon.url}
+                      alt={link.name}
+                      className="mr-2"
+                    />
+
+                    {link.name}
+                  </h3>
+                  <span className="block">{link.description}</span>
+                </div>
               </a>
             </div>
           ))}
