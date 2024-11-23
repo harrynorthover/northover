@@ -8,9 +8,11 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      fontFamily: {
+        sans: ["var(--font-lato)"],
+        lato: ["var(--font-lato)", "sans-serif"],
+        ephesis: ["var(--font-ephesis)", "cursive"],
+        merriweather: ["var(--font-merriweather)", "serif"],
       },
     },
   },
