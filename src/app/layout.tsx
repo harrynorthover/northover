@@ -1,3 +1,4 @@
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Inter, Lato, Merriweather } from "next/font/google";
 import { draftMode } from "next/headers";
@@ -70,6 +71,7 @@ export default async function RootLayout({
               &copy; {new Date().getFullYear()} Harry Northover
             </p>
           </footer>
+          <SpeedInsights />
         </main>
       </body>
     </html>
