@@ -1,6 +1,13 @@
 import { Tags } from "@/components/tags";
 import { getArticles } from "@/lib/api";
 
+// Set metadata for the page
+export const metadata = {
+  title: "Articles",
+  description:
+    "A collection of my technical writing, exploring various topics.",
+};
+
 export default async function ArticlesPage() {
   const articles = await getArticles();
 
