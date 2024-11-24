@@ -1,9 +1,11 @@
-import React, { ReactNode } from "react";
-import { Document, MARKS } from "@contentful/rich-text-types";
-
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import PrismLoader from "@/components/prismLoader";
+import { Document, MARKS } from "@contentful/rich-text-types";
 import clsx from "clsx";
+import React, { ReactNode } from "react";
+
+
+import PrismLoader from "@/components/prismLoader";
+
 
 const options = {
   renderMark: {

@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { ReactNode } from "react";
 import {
   INLINES,
   BLOCKS,
@@ -7,11 +6,16 @@ import {
   Block,
   Inline,
 } from "@contentful/rich-text-types";
-import BoxSummary from "./summary";
-import { Hint, HintVariant } from "./hint";
-import { CodeBlock } from "./code";
-import { Article } from "@/types/data";
 import Image from "next/image";
+import React, { ReactNode } from "react";
+
+import { Article } from "@/types/data";
+
+import { CodeBlock } from "./code";
+import { Hint, HintVariant } from "./hint";
+import BoxSummary from "./summary";
+
+
 
 export function createRenderOptions(links: Article["content"]["links"]) {
   const assetMap = new Map();

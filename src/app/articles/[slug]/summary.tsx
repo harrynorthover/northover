@@ -1,6 +1,7 @@
-import React from "react";
-import Tags from "@/components/tags";
 import Image from "next/image";
+import React from "react";
+
+import Tags from "@/components/tags";
 
 type BoxSummaryProps = {
   name: string;

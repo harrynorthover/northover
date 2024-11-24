@@ -1,5 +1,6 @@
-import { getArticles } from "@/lib/api";
 import { MetadataRoute } from "next";
+
+import { getArticles } from "@/lib/api";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = await getArticles();

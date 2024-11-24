@@ -1,9 +1,10 @@
-import Tags from "@/components/tags";
-import { getGlobalContent } from "@/lib/api";
+import { Metadata } from "next";
 import { draftMode } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
-import { Metadata } from "next";
+
+import Tags from "@/components/tags";
+import { getGlobalContent } from "@/lib/api";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { isEnabled } = await draftMode();

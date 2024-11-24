@@ -1,5 +1,6 @@
-import { Article } from "@/types/data";
 import { FaLinkedin, FaGlobe } from "react-icons/fa";
+
+import { Article } from "@/types/data";
 
 const ArticleAuthors = ({ article }: { article: Article }) => {
   return (

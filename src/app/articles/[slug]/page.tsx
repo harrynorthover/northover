@@ -1,9 +1,12 @@
-import { getArticle } from "@/lib/api";
-import Image from "next/image";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { Metadata } from "next";
-import { createRenderOptions } from "./article.config";
+import Image from "next/image";
+
+
 import ArticleAuthors from "@/components/articleAuthors";
+import { getArticle } from "@/lib/api";
+
+import { createRenderOptions } from "./article.config";
 
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;

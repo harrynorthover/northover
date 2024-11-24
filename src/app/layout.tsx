@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Inter, Lato, Merriweather } from "next/font/google";
-import "./globals.css";
-import { getGlobalContent } from "@/lib/api";
 import { draftMode } from "next/headers";
+
+import "./globals.css";
+
+import { getGlobalContent } from "@/lib/api";
 
 const inter = Inter({
   variable: "--font-inter",
