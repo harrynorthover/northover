@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-//@ts-ignore
+//@ts-expect-error Something is wrong with the types
 import { enableDraftHandler } from "@contentful/vercel-nextjs-toolkit/app-router";
 import { NextResponse } from "next/server";
 
-export async function GET(req: Request) {
+export async function GET(req: Request): Promise<Response> {
   const url = new URL(req.url);
   const secret = url.searchParams.get("secret");
   const slug = url.searchParams.get("slug");
