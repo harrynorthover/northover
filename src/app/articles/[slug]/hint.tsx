@@ -8,11 +8,12 @@ import clsx from "clsx";
 const options = {
   renderMark: {
     [MARKS.BOLD]: (text: ReactNode) => <b>{text}</b>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [MARKS.CODE]: (code: any) => <code>{code}</code>,
   },
 };
 
-type HintVariant = "Information" | "Warning" | "Lab";
+export type HintVariant = "Information" | "Warning" | "Lab";
 
 type HintContentProps = {
   className: HintVariant;

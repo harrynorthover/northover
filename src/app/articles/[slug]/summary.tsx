@@ -18,7 +18,7 @@ const renderStar = (selected: boolean = false) => (
     src={"/svg/star.svg"}
     width={16}
     height={24}
-    className="inline-block"
+    className={`inline-block ${selected ? "text-yellow-400" : "text-gray-400"}`}
     alt={""}
   />
 );
@@ -31,7 +31,7 @@ const renderOSLogo = (platform: string): JSX.Element | string => {
   switch (platform.toLowerCase()) {
     case "linux":
       return (
-        <img
+        <Image
           src="/svg/linux.svg"
           alt="Linux"
           width="25"
@@ -41,7 +41,7 @@ const renderOSLogo = (platform: string): JSX.Element | string => {
       );
     case "windows":
       return (
-        <img
+        <Image
           src="/svg/windows.svg"
           alt="Windows"
           width="25"
@@ -59,7 +59,7 @@ const renderCompanyLogo = (company: string): JSX.Element | string => {
     case "offsec - practise":
     case "offsec - play":
       return (
-        <img
+        <Image
           src="/svg/offsec.svg"
           alt={company}
           width="25"
@@ -69,7 +69,7 @@ const renderCompanyLogo = (company: string): JSX.Element | string => {
       );
     case "try hack me":
       return (
-        <img
+        <Image
           src="/thm.png"
           alt={company}
           width="24"
@@ -79,7 +79,7 @@ const renderCompanyLogo = (company: string): JSX.Element | string => {
       );
     case "hackthebox":
       return (
-        <img
+        <Image
           src="/htb.png"
           alt={company}
           width="24"
@@ -95,7 +95,6 @@ const renderCompanyLogo = (company: string): JSX.Element | string => {
 const BoxSummary: React.FC<BoxSummaryProps> = ({
   name,
   rating,
-  points,
   platform,
   type,
   tags,

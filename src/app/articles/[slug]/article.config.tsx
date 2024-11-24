@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { ReactNode } from "react";
 import {
   INLINES,
@@ -7,9 +8,10 @@ import {
   Inline,
 } from "@contentful/rich-text-types";
 import BoxSummary from "./summary";
-import { Hint } from "./hint";
+import { Hint, HintVariant } from "./hint";
 import { CodeBlock } from "./code";
 import { Article } from "@/types/data";
+import Image from "next/image";
 
 export function createRenderOptions(links: Article["content"]["links"]) {
   const assetMap = new Map();
@@ -63,7 +65,7 @@ export function createRenderOptions(links: Article["content"]["links"]) {
 
         const { url, title, description } = asset;
         return (
-          <img
+          <Image
             src={url}
             alt={title || description || "Embedded Asset"}
             title={title || description}
@@ -129,7 +131,7 @@ export function createRenderOptions(links: Article["content"]["links"]) {
                 title={entry.title}
                 slug={slug}
                 content={content}
-                type={hintType}
+                type={hintType as HintVariant}
               />
             );
 
@@ -153,7 +155,7 @@ export function createRenderOptions(links: Article["content"]["links"]) {
         }
       },
 
-      [INLINES.EMBEDDED_ENTRY]: (node: any, children: ReactNode) => {
+      [INLINES.EMBEDDED_ENTRY]: (node: any) => {
         const entry = entryMap.get(node.data.target.sys.id);
         if (!entry || !entry.__typename) return null;
 

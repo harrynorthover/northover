@@ -1,4 +1,5 @@
 import { getArticle } from "@/lib/api";
+import Image from "next/image";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { Metadata } from "next";
 import { createRenderOptions } from "./article.config";
@@ -32,7 +33,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         <p>{article.introduction}</p>
 
         {article.heroImage && (
-          <img src={article.heroImage.url} alt={article.title} />
+          <Image src={article.heroImage.url} alt={article.title} />
         )}
       </header>
 

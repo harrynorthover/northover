@@ -1,4 +1,5 @@
-import { Document, Link } from "@contentful/rich-text-types";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Document } from "@contentful/rich-text-types";
 
 type MediaItem = {
   url: string;
