@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
-  INLINES,
-  BLOCKS,
-  MARKS,
   Block,
+  BLOCKS,
   Inline,
+  INLINES,
+  MARKS,
 } from "@contentful/rich-text-types";
 import React, { ReactNode } from "react";
 
@@ -66,6 +66,7 @@ export function createRenderOptions(links: Article["content"]["links"]) {
 
         const { url, title, description } = asset;
         return (
+          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={url}
             alt={title || description || "Embedded Asset"}
