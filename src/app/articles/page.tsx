@@ -1,4 +1,4 @@
-import Tags from "@/components/tags";
+import { Tags } from "@/components/tags";
 import { getArticles } from "@/lib/api";
 
 export default async function ArticlesPage() {

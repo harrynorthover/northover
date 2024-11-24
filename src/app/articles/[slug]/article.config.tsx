@@ -6,7 +6,6 @@ import {
   Block,
   Inline,
 } from "@contentful/rich-text-types";
-import Image from "next/image";
 import React, { ReactNode } from "react";
 
 import { Article } from "@/types/data";

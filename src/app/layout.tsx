@@ -57,6 +57,9 @@ export default async function RootLayout({
           backgroundImage: backgroundImage ? `url(${backgroundImage})` : "none",
           backgroundSize: "cover",
           backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+          width: "100vw",
+          height: "100vh",
         }}
       >
         <main className="container mx-auto min-h-screen p-6 lg:pt-20 md:p-8 lg:p-12">

@@ -3,7 +3,7 @@ import { draftMode } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 
-import Tags from "@/components/tags";
+import { Tags } from "@/components/tags";
 import { getGlobalContent } from "@/lib/api";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -68,12 +68,10 @@ export default async function Home() {
                   rel="noopener noreferrer"
                   className="flex gap-4"
                 >
-                  <h3 className="flex align-middle pb-4 border-b border-b-gray-800/40 w-full">
-                    {link.name}
-                  </h3>
+                  <h3 className="flex align-middle pb-2 w-full">{link.name}</h3>
                 </Link>
 
-                <span className="block mt-3">{link.description}</span>
+                <span className="block leading-7">{link.description}</span>
               </div>
             </div>
           ))}

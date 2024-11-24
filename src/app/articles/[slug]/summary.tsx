@@ -1,9 +1,11 @@
 import Image from "next/image";
 import React from "react";
 
-import Tags from "@/components/tags";
-
-import { StarIcon } from "../../../components/icons/star";
+import { LinuxIcon } from "@/components/icons/linux";
+import { OffsecIcon } from "@/components/icons/offsec";
+import { StarIcon } from "@/components/icons/star";
+import { WindowsIcon } from "@/components/icons/windows";
+import { Tags } from "@/components/tags";
 
 interface BoxSummaryProps {
   name: string;
@@ -33,25 +35,9 @@ const renderStars = (amount: number = 0) => {
 const renderOSLogo = (platform: string): JSX.Element | string => {
   switch (platform.toLowerCase()) {
     case "linux":
-      return (
-        <Image
-          src="/svg/linux.svg"
-          alt="Linux"
-          width="25"
-          height="24"
-          className="inline-block"
-        />
-      );
+      return <LinuxIcon width="25" height="24" className="inline-block" />;
     case "windows":
-      return (
-        <Image
-          src="/svg/windows.svg"
-          alt="Windows"
-          width="25"
-          height="24"
-          className="inline-block"
-        />
-      );
+      return <WindowsIcon width="25" height="24" className="inline-block" />;
     default:
       return platform;
   }
@@ -61,15 +47,7 @@ const renderCompanyLogo = (company: string): JSX.Element | string => {
   switch (company.toLowerCase()) {
     case "offsec - practise":
     case "offsec - play":
-      return (
-        <Image
-          src="/svg/offsec.svg"
-          alt={company}
-          width="25"
-          height="24"
-          className="inline-block"
-        />
-      );
+      return <OffsecIcon width="25" height="24" className="inline-block" />;
     case "try hack me":
       return (
         <Image
@@ -97,15 +75,22 @@ const renderCompanyLogo = (company: string): JSX.Element | string => {
 interface BoxDetailProps {
   label: string;
   content: React.ReactNode;
+  centered?: boolean;
 }
 
-const BoxDetail: React.FC<BoxDetailProps> = ({ label, content }) => {
+const BoxDetail: React.FC<BoxDetailProps> = ({
+  label,
+  content,
+  centered = true,
+}) => {
   return (
     <div className="whitespace-nowrap flex flex-col">
       <div className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
         {label}
       </div>
-      <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow align-middle justify-center">
+      <div
+        className={`flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow ${centered ? `align-middle justify-center` : ""}`}
+      >
         {content}
       </div>
     </div>
@@ -126,9 +111,12 @@ const BoxSummary: React.FC<BoxSummaryProps> = ({
       <div className="grid h-full grid-cols-[1fr,60px,60px,110px,110px,auto] overflow-x-auto">
         <BoxDetail
           label="Box"
+          centered={false}
           content={
             <a href={url} target="_blank" rel="noopener noreferrer">
-              {name}
+              <span className="uppercase tracking-widest text-sm font-bold">
+                {name}
+              </span>
             </a>
           }
         />

@@ -22,8 +22,6 @@ const renderTags = (tags: string[], margin = true) =>
     </a>
   ));
 
-const Tags: React.FC<TagsProps> = ({ tags, margin = true }) => {
+export const Tags: React.FC<TagsProps> = ({ tags, margin = true }) => {
   return <div className={margin ? `mb-5` : ""}>{renderTags(tags, margin)}</div>;
 };
-
-export default Tags;
