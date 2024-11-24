@@ -3,8 +3,9 @@ import { FaLinkedin, FaGlobe, FaGithub } from "react-icons/fa";
 
 const ArticleAuthors = ({ article }: { article: Article }) => {
   return (
-    <section className="space-y-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap- border-t border-t-gray-900 mt-12 pt-4">
+    <section className="mt-12">
+      <h4 className="font-semibold text-white mb-2">Author</h4>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-t-gray-900 pt-4">
         {article.authorCollection.items.map((author, index) => (
           <div key={index}>
             <h3 className="font-semibold text-white">{author.name}</h3>

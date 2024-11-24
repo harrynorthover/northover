@@ -66,7 +66,39 @@
   }
 
   a {
-    @apply text-white font-bold hover:text-blue-700 transition-all;
+    @apply text-white font-bold transition-all;
+
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+
+    display: inline-block;
+    position: relative;
+
+    :after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #5da5c8;
+      transform-origin: bottom right;
+      transition: transform 0.4s;
+      transition-timing-function: cubic-bezier(1, 0, 0, 1);
+    }
+
+    :hover:after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    &.alternate {
+      :hover:after {
+        transform-origin: bottom right;
+      }
+    }
   }
 
   ul {

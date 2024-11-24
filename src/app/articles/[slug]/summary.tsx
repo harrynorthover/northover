@@ -119,7 +119,7 @@ const BoxSummary: React.FC<BoxSummaryProps> = ({
           <div className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
             Type
           </div>
-          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow">
+          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow  align-middle justify-center">
             {renderOSLogo(type)}
           </div>
         </div>
@@ -127,7 +127,7 @@ const BoxSummary: React.FC<BoxSummaryProps> = ({
           <div className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
             Plat.
           </div>
-          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow">
+          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow  align-middle justify-center">
             {renderCompanyLogo(platform)}
           </div>
         </div>
@@ -135,15 +135,15 @@ const BoxSummary: React.FC<BoxSummaryProps> = ({
           <div className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
             Difficulty
           </div>
-          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow">
-            <Tags tags={[difficulty]} />
+          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow align-middle justify-center">
+            <Tags tags={[difficulty]} margin={false} />
           </div>
         </div>
         <div className="whitespace-nowrap flex flex-col">
           <div className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
             Rating
           </div>
-          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow">
+          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow align-middle justify-center">
             {renderStars(rating)}
           </div>
         </div>
@@ -151,8 +151,8 @@ const BoxSummary: React.FC<BoxSummaryProps> = ({
           <div className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
             Tags
           </div>
-          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow">
-            <Tags tags={tags} />
+          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow align-middle justify-center">
+            <Tags tags={tags} margin={false} />
           </div>
         </div>
       </div>
