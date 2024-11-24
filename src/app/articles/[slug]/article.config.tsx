@@ -15,8 +15,6 @@ import { CodeBlock } from "./code";
 import { Hint, HintVariant } from "./hint";
 import BoxSummary from "./summary";
 
-
-
 export function createRenderOptions(links: Article["content"]["links"]) {
   const assetMap = new Map();
   const entryMap = new Map();
@@ -69,7 +67,7 @@ export function createRenderOptions(links: Article["content"]["links"]) {
 
         const { url, title, description } = asset;
         return (
-          <Image
+          <img
             src={url}
             alt={title || description || "Embedded Asset"}
             title={title || description}

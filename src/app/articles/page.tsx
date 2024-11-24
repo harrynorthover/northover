@@ -16,9 +16,10 @@ export default async function ArticlesPage() {
           >
             <a href={`/articles/${article.url}`}>
               <h2>{article.title}</h2>
-              <Tags tags={article.tags} />
-              <p className="pr-12">{article.introduction}</p>
             </a>
+
+            <Tags tags={article.tags} />
+            <p className="pr-12">{article.introduction}</p>
           </div>
         ))}
       </div>

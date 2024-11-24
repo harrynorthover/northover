@@ -216,7 +216,6 @@ async function fetchGraphQL<T>(
   );
 
   const json = await response.json();
-  console.log(json);
   return json.data;
 }
 

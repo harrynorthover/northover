@@ -3,7 +3,9 @@ import React from "react";
 
 import Tags from "@/components/tags";
 
-type BoxSummaryProps = {
+import { StarIcon } from "../../../components/icons/star";
+
+interface BoxSummaryProps {
   name: string;
   rating: number;
   points: number;
@@ -12,20 +14,20 @@ type BoxSummaryProps = {
   tags: string[];
   difficulty: string;
   url: string;
-};
+}
 
-const renderStar = (selected: boolean = false) => (
-  <Image
-    src={"/svg/star.svg"}
+const renderStar = (index: number, selected: boolean = false) => (
+  <StarIcon
+    key={index}
     width={16}
     height={24}
+    fill={selected ? "gold" : "grey"}
     className={`inline-block ${selected ? "text-yellow-400" : "text-gray-400"}`}
-    alt={""}
   />
 );
 
 const renderStars = (amount: number = 0) => {
-  return Array.from({ length: 5 }, (_, i) => renderStar(i < amount));
+  return Array.from({ length: 5 }, (_, i) => renderStar(i, i < amount));
 };
 
 const renderOSLogo = (platform: string): JSX.Element | string => {
@@ -92,6 +94,23 @@ const renderCompanyLogo = (company: string): JSX.Element | string => {
       return company;
   }
 };
+interface BoxDetailProps {
+  label: string;
+  content: React.ReactNode;
+}
+
+const BoxDetail: React.FC<BoxDetailProps> = ({ label, content }) => {
+  return (
+    <div className="whitespace-nowrap flex flex-col">
+      <div className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
+        {label}
+      </div>
+      <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow align-middle justify-center">
+        {content}
+      </div>
+    </div>
+  );
+};
 
 const BoxSummary: React.FC<BoxSummaryProps> = ({
   name,
@@ -105,56 +124,22 @@ const BoxSummary: React.FC<BoxSummaryProps> = ({
   return (
     <div className="block border max-w-4xl border-gray-800 rounded-lg overflow-hidden transition-all duration-200">
       <div className="grid h-full grid-cols-[1fr,60px,60px,110px,110px,auto] overflow-x-auto">
-        <div className="whitespace-nowrap flex flex-col">
-          <div className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
-            Box
-          </div>
-          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow">
-            <a href={url} target="_blank">
+        <BoxDetail
+          label="Box"
+          content={
+            <a href={url} target="_blank" rel="noopener noreferrer">
               {name}
             </a>
-          </div>
-        </div>
-        <div className="whitespace-nowrap flex flex-col">
-          <div className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
-            Type
-          </div>
-          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow  align-middle justify-center">
-            {renderOSLogo(type)}
-          </div>
-        </div>
-        <div className="whitespace-nowrap flex flex-col">
-          <div className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
-            Plat.
-          </div>
-          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow  align-middle justify-center">
-            {renderCompanyLogo(platform)}
-          </div>
-        </div>
-        <div className="whitespace-nowrap flex flex-col">
-          <div className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
-            Difficulty
-          </div>
-          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow align-middle justify-center">
-            <Tags tags={[difficulty]} margin={false} />
-          </div>
-        </div>
-        <div className="whitespace-nowrap flex flex-col">
-          <div className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
-            Rating
-          </div>
-          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow align-middle justify-center">
-            {renderStars(rating)}
-          </div>
-        </div>
-        <div className="whitespace-nowrap flex flex-col">
-          <div className="block font-bold uppercase text-xs tracking-wide bg-gray-800 text-gray-200 p-2 border-r border-gray-700">
-            Tags
-          </div>
-          <div className="flex items-center bg-gray-900 text-gray-300 p-2 border-r border-gray-800 flex-grow align-middle justify-center">
-            <Tags tags={tags} margin={false} />
-          </div>
-        </div>
+          }
+        />
+        <BoxDetail label="Type" content={renderOSLogo(type)} />
+        <BoxDetail label="Plat." content={renderCompanyLogo(platform)} />
+        <BoxDetail
+          label="Difficulty"
+          content={<Tags tags={[difficulty]} margin={false} />}
+        />
+        <BoxDetail label="Rating" content={renderStars(rating)} />
+        <BoxDetail label="Tags" content={<Tags tags={tags} margin={false} />} />
       </div>
     </div>
   );

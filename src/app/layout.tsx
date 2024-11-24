@@ -59,7 +59,7 @@ export default async function RootLayout({
           backgroundPosition: "center",
         }}
       >
-        <main className="container mx-auto min-h-screen p-6 pt-20 md:p-8 lg:p-12">
+        <main className="container mx-auto min-h-screen p-6 lg:pt-20 md:p-8 lg:p-12">
           {children}
 
           <footer>
