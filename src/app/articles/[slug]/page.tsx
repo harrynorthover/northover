@@ -30,7 +30,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const {
     heroImage,
     title,
-    introduction,
     publishedAt,
     content,
     authorCollection: { items: authors },
