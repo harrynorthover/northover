@@ -125,7 +125,11 @@
   }
 
   blockquote {
-    @apply border-l-4 border-blue-700 bg-blue-100 text-blue-700 p-4 my-4;
+    @apply border-l-4 border-blue-700 text-blue-700 p-4 my-4 bg-gray-800;
+
+    p {
+      margin-bottom: 0;
+    }
   }
 
   pre {
