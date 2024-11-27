@@ -37,7 +37,7 @@ type Author = {
   jobTitle: string;
   personalWebsite: string | null;
   companyWebsite: string | null;
-  about: RichText;
+  github: string | null;
 };
 
 type SEOData = {
@@ -51,17 +51,15 @@ export type Article = {
   tags: string[];
   introduction: string;
   enableComments: boolean;
+  publishedAt: Date;
+  updatedAt: Date;
+  sys: {
+    firstPublishedAt: string;
+    publishedAt: string;
+  };
   url: string;
   authorCollection: {
-    items: {
-      name: string;
-      jobTitle: string;
-      personalWebsite: string | null;
-      companyWebsite: string | null;
-      about: {
-        json: Document; // Replace `any` with a more specific type if available for Contentful rich text JSON
-      };
-    }[];
+    items: Author[];
   };
   previewImage: {
     url: string;
@@ -149,10 +147,12 @@ export type Article = {
   };
 };
 
+export type ArticlePreview = Omit<Article, "content">;
+
 export type HomepageData = {
   general: GeneralData;
   articleCollection: {
-    items: Article[];
+    items: ArticlePreview[];
   };
   seo: SEOData;
 };

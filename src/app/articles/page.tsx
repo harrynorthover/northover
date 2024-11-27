@@ -1,4 +1,4 @@
-import { Tags } from "@/components/tags";
+import { ArticleList } from "@/components/ArticleList";
 import { getArticles } from "@/lib/api";
 
 // Set metadata for the page
@@ -16,19 +16,7 @@ export default async function ArticlesPage() {
       <h1 className="mb-12 mt-12">Articles</h1>
 
       <div className="grid grid-cols-2 gap-4">
-        {articles.map((article) => (
-          <div
-            key={article.url}
-            className="h-[280px] border-b border-b-gray-900 mb-8"
-          >
-            <a href={`/articles/${article.url}`}>
-              <h2>{article.title}</h2>
-            </a>
-
-            <Tags tags={article.tags} />
-            <p className="pr-12">{article.introduction}</p>
-          </div>
-        ))}
+        <ArticleList articles={articles} />
       </div>
     </div>
   );

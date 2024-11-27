@@ -71,11 +71,11 @@
     text-decoration: none;
     color: #fff;
     font-weight: 600;
-
-    display: inline-block;
     position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
 
-    :after {
+    &:after {
       content: "";
       position: absolute;
       width: 100%;
@@ -89,7 +89,7 @@
       transition-timing-function: cubic-bezier(1, 0, 0, 1);
     }
 
-    :hover:after {
+    &:hover:after {
       transform: scaleX(1);
       transform-origin: bottom left;
     }
@@ -98,6 +98,13 @@
       :hover:after {
         transform-origin: bottom right;
       }
+    }
+  }
+
+  article {
+    a {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
     }
   }
 

@@ -3,9 +3,7 @@ import { Document, MARKS } from "@contentful/rich-text-types";
 import clsx from "clsx";
 import React, { ReactNode } from "react";
 
-
-import PrismLoader from "@/components/prismLoader";
-
+import PrismLoader from "@/components/PrismLoader";
 
 const options = {
   renderMark: {

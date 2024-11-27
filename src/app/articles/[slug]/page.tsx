@@ -1,9 +1,9 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { format } from "date-fns";
 import { Metadata } from "next";
 import Image from "next/image";
 
-
-import ArticleAuthors from "@/components/articleAuthors";
+import ArticleAuthors from "@/components/ArticleAuthors";
 import { getArticle } from "@/lib/api";
 
 import { createRenderOptions } from "./article.config";
@@ -27,27 +27,35 @@ export async function generateMetadata({
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const { slug } = await params;
-  const article = await getArticle(slug);
+  const {
+    heroImage,
+    title,
+    introduction,
+    publishedAt,
+    content,
+    authorCollection: { items: authors },
+  } = await getArticle(slug);
 
   return (
     <article className="max-w-5xl mt-24">
-      <header className="max-w-5xl">
-        <h1>{article.title}</h1>
-        <p>{article.introduction}</p>
+      <header className="max-w-5xl border-b border-b-gray-800 pb-4 mb-4">
+        <h1>{title}</h1>
+        <p className="italic mb-0">
+          {format(publishedAt, "EEEE do MMMM yyyy")}
+        </p>
 
-        {article.heroImage && (
-          <Image src={article.heroImage.url} alt={article.title} />
-        )}
+        {/* <p>{introduction}</p> */}
+        {heroImage && <Image src={heroImage.url} alt={title} />}
       </header>
 
       <section>
         {documentToReactComponents(
-          article.content.json,
-          createRenderOptions(article.content.links)
+          content.json,
+          createRenderOptions(content.links)
         )}
       </section>
 
-      <ArticleAuthors article={article} />
+      <ArticleAuthors authors={authors} />
     </article>
   );
 }

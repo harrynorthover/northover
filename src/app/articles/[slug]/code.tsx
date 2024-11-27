@@ -1,4 +1,4 @@
-import PrismLoader from "@/components/prismLoader";
+import PrismLoader from "@/components/PrismLoader";
 
 export const CodeBlock = ({
   code,

@@ -3,7 +3,8 @@ import { draftMode } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 
-import { Tags } from "@/components/tags";
+import { ArticleList } from "@/components/ArticleList";
+import { LinkGrid } from "@/components/LinkGrid";
 import { getGlobalContent } from "@/lib/api";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -34,48 +35,13 @@ export default async function Home() {
         <p className="max-w-4xl">{general.introduction}</p>
       </header>
 
-      <section className="my-8 mb-4 py-8 pb-0">
-        <div>
-          {articleCollection.items.map((article) => (
-            <div key={article.url} className="lg:max-w-[50%] pb-8">
-              <Link href={`/articles/${article.url}`}>
-                <h2>{article.title}</h2>
-              </Link>
-              <Tags tags={article.tags} />
-              <p>{article.introduction}</p>
-            </div>
-          ))}
-        </div>
+      <section className="my-8 mb-4 py-8 pb-0 lg:max-w-[50%]">
+        <ArticleList articles={articleCollection.items} />
+        <Link href="/articles">View more →</Link>
       </section>
 
       <section>
-        <div className="grid md:grid-cols-3 gap-y-6 gap-x-20 max-w-6xl border-t border-t-gray-800/40 pt-12">
-          {general.linksCollection.items.map((link) => (
-            <div key={link.url} className="min-w-[200px]">
-              {/* <div className="w-[15px] flex-shrink-0">
-                <Image
-                  width={15}
-                  height={30}
-                  src={link.icon.url}
-                  alt={link.name}
-                  className="mr-2 mt-1"
-                />
-              </div> */}
-              <div>
-                <Link
-                  href={link.url || ""}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex gap-4"
-                >
-                  <h3 className="flex align-middle pb-2 w-full">{link.name}</h3>
-                </Link>
-
-                <span className="block leading-7">{link.description}</span>
-              </div>
-            </div>
-          ))}
-        </div>
+        <LinkGrid links={general.linksCollection.items} />
       </section>
     </div>
   );

@@ -5,7 +5,7 @@ import { LinuxIcon } from "@/components/icons/linux";
 import { OffsecIcon } from "@/components/icons/offsec";
 import { StarIcon } from "@/components/icons/star";
 import { WindowsIcon } from "@/components/icons/windows";
-import { Tags } from "@/components/tags";
+import { Tags } from "@/components/Tags";
 
 interface BoxSummaryProps {
   name: string;
