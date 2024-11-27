@@ -16,8 +16,8 @@ export const Author: React.FC<AuthorProps> = ({
   github,
 }) => (
   <div>
-    <h3 className="font-semibold text-white">{name}</h3>
-    <p className="text-gray-400">{jobTitle}</p>
+    <p className="font-semibold text-white mb-0">{name}</p>
+    <p className="text-gray-400 text-sm itali">{jobTitle}</p>
     <div className="flex space-x-4">
       {personalWebsite && (
         <a

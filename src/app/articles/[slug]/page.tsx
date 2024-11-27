@@ -7,6 +7,7 @@ import ArticleAuthors from "@/components/ArticleAuthors";
 import { getArticle } from "@/lib/api";
 
 import { createRenderOptions } from "./article.config";
+import { Tags } from "@/components/Tags";
 
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;
@@ -32,6 +33,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     title,
     publishedAt,
     content,
+    tags,
     authorCollection: { items: authors },
   } = await getArticle(slug);
 
@@ -39,7 +41,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     <article className="max-w-5xl mt-24">
       <header className="max-w-5xl border-b border-b-gray-800 pb-4 mb-4">
         <h1>{title}</h1>
-        <p className="italic mb-0">
+        <Tags tags={tags} />
+        <p className="text-sm mb-0 text-gray-400">
           {format(publishedAt, "EEEE do MMMM yyyy")}
         </p>
 

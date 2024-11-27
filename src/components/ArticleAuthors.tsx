@@ -5,7 +5,6 @@ import { Author } from "./Author";
 const ArticleAuthors = ({ authors }: { authors: AuthorType[] }) => {
   return (
     <section className="mt-12">
-      <h4 className="font-semibold text-white mb-2">Author</h4>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-t-gray-900 pt-4">
         {authors.map((author, index) => (
           <Author
