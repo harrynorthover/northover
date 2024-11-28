@@ -4,10 +4,10 @@ import { Metadata } from "next";
 import Image from "next/image";
 
 import ArticleAuthors from "@/components/ArticleAuthors";
+import { Tags } from "@/components/Tags";
 import { getArticle } from "@/lib/api";
 
 import { createRenderOptions } from "./article.config";
-import { Tags } from "@/components/Tags";
 
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;
