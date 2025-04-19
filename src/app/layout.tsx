@@ -1,7 +1,7 @@
+import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Inter, Lato, Merriweather } from "next/font/google";
 import { draftMode } from "next/headers";
-import { Analytics } from "@vercel/analytics/react";
 
 import "./globals.css";
 
