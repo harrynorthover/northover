@@ -1,6 +1,7 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { format } from "date-fns";
 import { Metadata } from "next";
+import Head from "next/head";
 import Image from "next/image";
 
 import ArticleAuthors from "@/components/ArticleAuthors";
@@ -8,7 +9,6 @@ import { Tags } from "@/components/Tags";
 import { getArticle } from "@/lib/api";
 
 import { createRenderOptions } from "./article.config";
-import Head from "next/head";
 
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;

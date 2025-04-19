@@ -1,6 +1,7 @@
+import Head from "next/head";
+
 import { ArticleList } from "@/components/ArticleList";
 import { getArticles } from "@/lib/api";
-import Head from "next/head";
 
 // Set metadata for the page
 export const metadata = {

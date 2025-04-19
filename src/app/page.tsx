@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Head from "next/head";
 import { draftMode } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,7 +7,6 @@ import Link from "next/link";
 import { ArticleList } from "@/components/ArticleList";
 import { LinkGrid } from "@/components/LinkGrid";
 import { getGlobalContent } from "@/lib/api";
-import Head from "next/head";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { isEnabled } = await draftMode();
