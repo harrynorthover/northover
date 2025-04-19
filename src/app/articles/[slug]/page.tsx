@@ -8,6 +8,7 @@ import { Tags } from "@/components/Tags";
 import { getArticle } from "@/lib/api";
 
 import { createRenderOptions } from "./article.config";
+import Head from "next/head";
 
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;
@@ -39,6 +40,34 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <article className="max-w-5xl mt-24">
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              headline: title,
+              description:
+                content?.json?.content?.[0]?.content?.[0]?.value ?? "",
+              datePublished: publishedAt,
+              dateModified: publishedAt,
+              url: `https://northover.co/articles/${slug}`,
+              image: heroImage?.url ?? undefined,
+              author: authors.length
+                ? {
+                    "@type": "Person",
+                    name: authors[0].name,
+                  }
+                : undefined,
+              mainEntityOfPage: {
+                "@type": "WebPage",
+                "@id": `https://northover.co/articles/${slug}`,
+              },
+            }),
+          }}
+        />
+      </Head>
       <header className="max-w-5xl border-b border-b-gray-800 pb-4 mb-4">
         <h1>{title}</h1>
         <Tags tags={tags} />
