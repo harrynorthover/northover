@@ -1,10 +1,10 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { format } from "date-fns";
 import { Metadata } from "next";
-import Head from "next/head";
 import Image from "next/image";
 
 import ArticleAuthors from "@/components/ArticleAuthors";
+import { StructuredData } from "@/components/StructuredData";
 import { Tags } from "@/components/Tags";
 import { getArticle } from "@/lib/api";
 
@@ -24,6 +24,15 @@ export async function generateMetadata({
     title: article.title,
     description: article.introduction,
     keywords: article.tags,
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/articles/${slug}`,
+    },
+    openGraph: {
+      title: article.title,
+      description: article.introduction,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/articles/${slug}`,
+      siteName: article.title,
+    },
   };
 }
 
@@ -39,38 +48,30 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   } = await getArticle(slug);
 
   const url = `${process.env.NEXT_PUBLIC_SITE_URL}/articles/${slug}`;
+  const sturcutredData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description: content?.json?.content?.[0]?.content?.[0]?.value ?? "",
+    datePublished: publishedAt,
+    dateModified: publishedAt,
+    url,
+    image: heroImage?.url ?? undefined,
+    author: authors.length
+      ? {
+          "@type": "Person",
+          name: authors[0].name,
+        }
+      : undefined,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+  };
 
   return (
     <article className="max-w-5xl mt-24">
-      <Head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "BlogPosting",
-              headline: title,
-              description:
-                content?.json?.content?.[0]?.content?.[0]?.value ?? "",
-              datePublished: publishedAt,
-              dateModified: publishedAt,
-              url,
-              image: heroImage?.url ?? undefined,
-              author: authors.length
-                ? {
-                    "@type": "Person",
-                    name: authors[0].name,
-                  }
-                : undefined,
-              mainEntityOfPage: {
-                "@type": "WebPage",
-                "@id": url,
-              },
-            }),
-          }}
-        />
-        <link rel="canonical" href={url} />
-      </Head>
+      <StructuredData data={sturcutredData} />
       <header className="max-w-5xl border-b border-b-gray-800 pb-4 mb-4">
         <h1>{title}</h1>
 

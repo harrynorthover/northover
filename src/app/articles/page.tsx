@@ -1,13 +1,25 @@
-import Head from "next/head";
+import { Metadata } from "next";
 
 import { ArticleList } from "@/components/ArticleList";
+import { StructuredData } from "@/components/StructuredData";
 import { getArticles } from "@/lib/api";
 
 // Set metadata for the page
-export const metadata = {
+export const metadata: Metadata = {
   title: "Articles",
   description:
     "A collection of my technical writing, exploring various topics.",
+  keywords: "articles, technical writing, software development",
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/articles`,
+  },
+  openGraph: {
+    title: "Articles",
+    description:
+      "A collection of my technical writing, exploring various topics.",
+    url: `${process.env.NEXT_PUBLIC_SITE_URL}/articles`,
+    siteName: "Harry Northover",
+  },
 };
 
 export default async function ArticlesPage() {
@@ -35,13 +47,7 @@ export default async function ArticlesPage() {
 
   return (
     <div className="max-w-6xl">
-      <Head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
-        <link rel="canonical" href={url} />
-      </Head>
+      <StructuredData data={structuredData} />
 
       <h1 className="mb-12 mt-12">Articles</h1>
 
