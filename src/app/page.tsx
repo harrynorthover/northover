@@ -34,7 +34,7 @@ export default async function Home() {
                 "@context": "https://schema.org",
                 "@type": "Person",
                 name: "Harry Northover",
-                url: "https://northover.co",
+                url: process.env.NEXT_PUBLIC_SITE_URL,
                 sameAs: [
                   "https://twitter.com/harrynorthover",
                   "https://github.com/harrynorthover",
@@ -49,7 +49,7 @@ export default async function Home() {
                 "@context": "https://schema.org",
                 "@type": "WebSite",
                 name: general.title,
-                url: "https://northover.co",
+                url: process.env.NEXT_PUBLIC_SITE_URL,
                 description: general.introduction,
               },
               ...articleCollection.items.map((article) => ({
@@ -59,7 +59,7 @@ export default async function Home() {
                 description: article.introduction,
                 datePublished: article.sys.firstPublishedAt,
                 dateModified: article.sys.publishedAt,
-                url: `https://northover.co/${article.url}`,
+                url: `${process.env.NEXT_PUBLIC_SITE_URL}/${article.url}`,
                 author: {
                   "@type": "Person",
                   name:
@@ -72,12 +72,13 @@ export default async function Home() {
                   undefined,
                 mainEntityOfPage: {
                   "@type": "WebPage",
-                  "@id": `https://northover.co/${article.url}`,
+                  "@id": `${process.env.NEXT_PUBLIC_SITE_URL}/${article.url}`,
                 },
               })),
             ]),
           }}
         />
+        <link rel="canonical" href={process.env.NEXT_PUBLIC_SITE_URL} />
       </Head>
       <header className="mt-14">
         <Image

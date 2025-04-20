@@ -38,6 +38,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     authorCollection: { items: authors },
   } = await getArticle(slug);
 
+  const url = `${process.env.NEXT_PUBLIC_SITE_URL}/articles/${slug}`;
+
   return (
     <article className="max-w-5xl mt-24">
       <Head>
@@ -52,7 +54,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 content?.json?.content?.[0]?.content?.[0]?.value ?? "",
               datePublished: publishedAt,
               dateModified: publishedAt,
-              url: `https://northover.co/articles/${slug}`,
+              url,
               image: heroImage?.url ?? undefined,
               author: authors.length
                 ? {
@@ -62,20 +64,22 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 : undefined,
               mainEntityOfPage: {
                 "@type": "WebPage",
-                "@id": `https://northover.co/articles/${slug}`,
+                "@id": url,
               },
             }),
           }}
         />
+        <link rel="canonical" href={url} />
       </Head>
       <header className="max-w-5xl border-b border-b-gray-800 pb-4 mb-4">
         <h1>{title}</h1>
+
         <Tags tags={tags} />
+
         <p className="text-sm mb-0 text-gray-400">
           {format(publishedAt, "EEEE do MMMM yyyy")}
         </p>
 
-        {/* <p>{introduction}</p> */}
         {heroImage && <Image src={heroImage.url} alt={title} />}
       </header>
 

@@ -12,22 +12,23 @@ export const metadata = {
 
 export default async function ArticlesPage() {
   const articles = await getArticles();
+  const url = `${process.env.NEXT_PUBLIC_SITE_URL}/articles`;
 
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "Articles",
-    url: "https://northover.co/articles",
+    url,
     description:
       "A collection of my technical writing, exploring various topics.",
     hasPart: articles.map((article) => ({
       "@type": "BlogPosting",
       headline: article.title,
-      url: `https://northover.co${article.url}`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${article.url}`,
       datePublished: article.sys.firstPublishedAt,
       author: {
         "@type": "Person",
-        name: article.authorCollection?.items?.[0]?.name ?? "Unknown",
+        name: article.authorCollection?.items?.[0]?.name ?? "Harry Northover",
       },
     })),
   };
@@ -39,6 +40,7 @@ export default async function ArticlesPage() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
+        <link rel="canonical" href={url} />
       </Head>
 
       <h1 className="mb-12 mt-12">Articles</h1>
