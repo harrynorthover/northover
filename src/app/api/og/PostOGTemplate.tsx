@@ -25,7 +25,7 @@ export const PostOGTemplate = (
     <div
       style={{
         width: "100%",
-        height: "70%",
+        height: "80%",
         backgroundColor: "none",
         display: "flex",
         justifyContent: "center",
