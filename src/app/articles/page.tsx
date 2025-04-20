@@ -32,7 +32,7 @@ export default async function ArticlesPage() {
     name: "Articles",
     url,
     description:
-      "A collection of my technical writing, exploring various topics.",
+      "A collection of my technical writing, exploring various topics around web development and security.",
     hasPart: articles.map((article) => ({
       "@type": "BlogPosting",
       headline: article.title,
@@ -42,6 +42,7 @@ export default async function ArticlesPage() {
         "@type": "Person",
         name: article.authorCollection?.items?.[0]?.name ?? "Harry Northover",
       },
+      image: article.heroImage?.url ?? `/api/og?title=${article.title}`,
     })),
   };
 

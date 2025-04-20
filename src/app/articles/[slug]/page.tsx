@@ -32,6 +32,14 @@ export async function generateMetadata({
       description: article.introduction,
       url: `${process.env.NEXT_PUBLIC_SITE_URL}/articles/${slug}`,
       siteName: article.title,
+      images: [
+        {
+          url: article.heroImage?.url ?? `/api/og?title=${article.title}`,
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
     },
   };
 }

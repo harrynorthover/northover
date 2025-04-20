@@ -67,7 +67,10 @@ export default async function Home() {
         "@type": "Person",
         name: article.authorCollection.items[0]?.name || "Harry Northover",
       },
-      image: article.heroImage?.url || article.previewImage?.url || undefined,
+      image:
+        article.heroImage?.url ||
+        article.previewImage?.url ||
+        `/api/og?title=${article.title}`,
       mainEntityOfPage: {
         "@type": "WebPage",
         "@id": `${process.env.NEXT_PUBLIC_SITE_URL}/${article.url}`,
