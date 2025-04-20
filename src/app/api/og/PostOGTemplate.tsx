@@ -32,7 +32,7 @@ export const PostOGTemplate = (
         alignItems: "center",
         padding: "60px",
         color: "white",
-        fontSize: 64,
+        fontSize: 90,
         fontWeight: 700,
         textAlign: "center",
         fontFamily: "Merriweather",
