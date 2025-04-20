@@ -18,26 +18,28 @@ export async function generateMetadata({
   params,
 }: ArticlePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = await getArticle(slug);
+  const { title, introduction, url, tags, heroImage } = await getArticle(slug);
 
   return {
-    title: article.title,
-    description: article.introduction,
-    keywords: article.tags,
+    title,
+    description: introduction,
+    keywords: tags,
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/articles/${slug}`,
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/articles/${url}`,
     },
     openGraph: {
-      title: article.title,
-      description: article.introduction,
-      url: `${process.env.NEXT_PUBLIC_SITE_URL}/articles/${slug}`,
-      siteName: article.title,
+      title,
+      description: introduction,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/articles/${url}`,
+      siteName: title,
       images: [
         {
-          url: article.heroImage?.url ?? `/api/og?title=${article.title}`,
+          url:
+            heroImage?.url ??
+            `${process.env.NEXT_PUBLIC_SITE_URL}/api/og?title=${title}`,
           width: 1200,
           height: 630,
-          alt: article.title,
+          alt: title,
         },
       ],
     },

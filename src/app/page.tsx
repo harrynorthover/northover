@@ -62,7 +62,7 @@ export default async function Home() {
       description: article.introduction,
       datePublished: article.sys.firstPublishedAt,
       dateModified: article.sys.publishedAt,
-      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${article.url}`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/articles/${article.url}`,
       author: {
         "@type": "Person",
         name: article.authorCollection.items[0]?.name || "Harry Northover",
@@ -70,10 +70,10 @@ export default async function Home() {
       image:
         article.heroImage?.url ||
         article.previewImage?.url ||
-        `/api/og?title=${article.title}`,
+        `${process.env.NEXT_PUBLIC_SITE_URL}/api/og?title=${article.title}`,
       mainEntityOfPage: {
         "@type": "WebPage",
-        "@id": `${process.env.NEXT_PUBLIC_SITE_URL}/${article.url}`,
+        "@id": `${process.env.NEXT_PUBLIC_SITE_URL}/articles/${article.url}`,
       },
     })),
   ];
