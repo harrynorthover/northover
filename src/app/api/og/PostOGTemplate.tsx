@@ -32,11 +32,11 @@ export const PostOGTemplate = (
         alignItems: "center",
         padding: "60px",
         color: "white",
-        fontSize: 90,
+        fontSize: 80,
         fontWeight: 700,
         textAlign: "center",
         fontFamily: "Merriweather",
-        lineHeight: 1.6,
+        lineHeight: 1.3,
       }}
     >
       {props.children}

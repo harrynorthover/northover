@@ -66,6 +66,7 @@ export default async function Home() {
       author: {
         "@type": "Person",
         name: article.authorCollection.items[0]?.name || "Harry Northover",
+        url: process.env.NEXT_PUBLIC_SITE_URL,
       },
       image:
         article.heroImage?.url ||
