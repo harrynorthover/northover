@@ -4,7 +4,7 @@ import type { SVGProps } from "react";
 const MAX_LENGTH = 50;
 
 type Inputs = SVGProps<SVGSVGElement> & {
-  title: string;
+  children: React.ReactNode;
   colors: [string, string];
 };
 
