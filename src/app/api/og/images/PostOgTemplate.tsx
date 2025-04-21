@@ -1,6 +1,8 @@
 import * as React from "react";
 import type { SVGProps } from "react";
 
+const MAX_LENGTH = 50;
+
 export const PostOGTemplate = (
   props: SVGProps<SVGSVGElement> & {
     children: React.ReactNode;
@@ -30,7 +32,7 @@ export const PostOGTemplate = (
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        padding: "60px",
+        padding: "60px 100px",
         color: "white",
         fontSize: 80,
         fontWeight: 700,
@@ -39,7 +41,9 @@ export const PostOGTemplate = (
         lineHeight: 1.3,
       }}
     >
-      {props.children}
+      {typeof props.children === "string" && props.children.length > MAX_LENGTH
+        ? props.children.slice(0, MAX_LENGTH) + "…"
+        : props.children}
     </div>
     <defs>
       <linearGradient

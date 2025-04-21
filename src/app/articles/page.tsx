@@ -19,6 +19,13 @@ export const metadata: Metadata = {
       "A collection of my technical writing, exploring various topics.",
     url: `${process.env.NEXT_PUBLIC_SITE_URL}/articles`,
     siteName: "Harry Northover",
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/api/og/root`,
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
 };
 
@@ -31,6 +38,7 @@ export default async function ArticlesPage() {
     "@type": "CollectionPage",
     name: "Articles",
     url,
+    image: `${process.env.NEXT_PUBLIC_SITE_URL}/api/og/root`,
     description:
       "A collection of my technical writing, exploring various topics around web development and security.",
     hasPart: articles.map((article) => ({

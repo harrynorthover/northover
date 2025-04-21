@@ -24,6 +24,13 @@ export async function generateMetadata(): Promise<Metadata> {
       description: seo.siteDescription,
       url: process.env.NEXT_PUBLIC_SITE_URL,
       siteName: seo.siteTitle,
+      images: [
+        {
+          url: `${process.env.NEXT_PUBLIC_SITE_URL}/api/og/root`,
+          width: 1200,
+          height: 630,
+        },
+      ],
     },
   };
 }
@@ -54,6 +61,7 @@ export default async function Home() {
       name: general.title,
       url: process.env.NEXT_PUBLIC_SITE_URL,
       description: general.introduction,
+      image: `${process.env.NEXT_PUBLIC_SITE_URL}/api/og/root`,
     },
     ...articleCollection.items.map((article) => ({
       "@context": "https://schema.org",

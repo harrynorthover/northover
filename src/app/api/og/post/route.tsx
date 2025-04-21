@@ -1,15 +1,18 @@
 import { ImageResponse } from "next/og";
 import { NextRequest } from "next/server";
 
-import { PostOGTemplate } from "./PostOGTemplate";
+import { PostOGTemplate } from "../images/PostOgTemplate";
 
 export const runtime = "edge";
 
 const COLOR_MAP = {
   red: ["#FF4B5C", "#FF1E56"],
-  green: ["#32FF6A", "#05C46B"],
   blue: ["#4BCFFA", "#0FBCF9"],
   purple: ["#A55EEA", "#8854D0"],
+  orange: ["#FF9F43", "#FF6B6B"],
+  yellow: ["#FFC312", "#EE5A24"],
+  pink: ["#FF6B81", "#FF4D6D"],
+  teal: ["#1B9CFC", "#45Aaf2"],
 };
 
 function getRandomGradient(): [string, string] {
