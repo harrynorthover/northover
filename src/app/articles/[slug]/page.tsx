@@ -36,7 +36,7 @@ export async function generateMetadata({
         {
           url:
             heroImage?.url ??
-            `${process.env.NEXT_PUBLIC_SITE_URL}/api/og?title=${title}`,
+            `${process.env.NEXT_PUBLIC_SITE_URL}/api/og/post?title=${title}`,
           width: 1200,
           height: 630,
           alt: title,
@@ -66,7 +66,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     datePublished: publishedAt,
     dateModified: publishedAt,
     url,
-    image: heroImage?.url ?? undefined,
+    image: heroImage?.url ?? `${process.env.NEXT_PUBLIC_SITE_URL}/api/og/post?title=${title}`,
     author: authors.length
       ? {
           "@type": "Person",
