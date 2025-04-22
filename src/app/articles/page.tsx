@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 
 import { ArticleList } from "@/components/ArticleList";
 import { StructuredData } from "@/components/StructuredData";
@@ -58,7 +59,14 @@ export default async function ArticlesPage() {
     <div className="max-w-6xl">
       <StructuredData data={structuredData} />
 
-      <h1 className="mb-12 mt-12">Articles</h1>
+      <Image
+        src="/signatureH.png"
+        alt="alt"
+        width={60}
+        height={50}
+        className="-ml-4"
+      />
+      <h1 className="mb-12 -mt-4">Articles</h1>
 
       <div className="grid grid-cols-2 gap-4">
         <ArticleList articles={articles} />

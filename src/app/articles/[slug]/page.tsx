@@ -2,6 +2,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { format } from "date-fns";
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 import ArticleAuthors from "@/components/ArticleAuthors";
 import { StructuredData } from "@/components/StructuredData";
@@ -80,9 +81,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   };
 
   return (
-    <article className="max-w-5xl mt-24">
+    <article className="max-w-5xl mt-4">
       <StructuredData data={sturcutredData} />
       <header className="max-w-5xl border-b border-b-gray-800 pb-4 mb-4">
+        <Link href="/articles" className="text-sm font-light text-gray-100 mb-10">
+          ← Back to articles
+        </Link>
+
         <h1>{title}</h1>
 
         <Tags tags={tags} />
