@@ -2,6 +2,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { Document, MARKS } from "@contentful/rich-text-types";
 import clsx from "clsx";
 import React, { ReactNode } from "react";
+import { BiInfoCircle } from "react-icons/bi";
 
 import PrismLoader from "@/components/PrismLoader";
 
@@ -25,7 +26,7 @@ export const HintContent: React.FC<HintContentProps> = ({
   children,
 }) => {
   const baseClasses = `
-    p-4 mb-2 overflow-auto border border-gray-800 rounded-b-md
+    px-4 pt-4 mb-2 overflow-auto border border-gray-800 rounded-b-md
   `;
 
   const variantClasses = {
@@ -57,10 +58,14 @@ export const Title: React.FC<TitleProps> = ({
   id,
 }) => {
   const baseClasses = `
-    block p-[11px_10px] font-bold text-[11px]
-    border border-gray-800 border-b-0
+    block p-4 font-bold text-[11px]
+    border
+    border-gray-800
+    border-b-0
     rounded-t-md
     transition-colors
+    flex
+    items-center
   `;
 
   const variantClasses: Record<TitleVariant, string> = {
@@ -98,10 +103,10 @@ export const Hint = ({
   type: HintVariant;
 }) => {
   return (
-    <div className="my-4">
+    <div className="my-2" data-component="Hint">
       <Title id={slug} href={`#${slug}`} className={type}>
-        {/* <InfoIcon /> */}
-        <h4 className="p-2 py-1">{title}</h4>
+        <BiInfoCircle size={20} />
+        <h4 className="pb-0 pl-2">{title}</h4>
       </Title>
       <HintContent className={type}>
         {documentToReactComponents(content.json, options)}

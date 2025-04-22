@@ -101,11 +101,8 @@
     }
   }
 
-  article {
-    a {
-      margin-bottom: 0 !important;
-      padding-bottom: 0 !important;
-    }
+  article p a {
+    @apply mb-0 pb-0 !important;
   }
 
   ul {
@@ -133,7 +130,7 @@
   }
 
   pre {
-    @apply text-xs bg-gray-800 text-white p-4 rounded-md overflow-x-auto !important;
+    @apply text-xs bg-gray-800 text-white p-4 rounded-b-md rounded-t-none overflow-x-auto !important;
   }
 
   code {
