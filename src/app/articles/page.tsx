@@ -68,7 +68,7 @@ export default async function ArticlesPage() {
       />
       <h1 className="mb-12 -mt-4">Articles</h1>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <ArticleList articles={articles} />
       </div>
     </div>
