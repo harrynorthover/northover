@@ -162,7 +162,7 @@ export const GLOBAL_QUERY = /* GraphQL */ `
         }
       }
     }
-    articleCollection(limit: 3, order: sys_publishedAt_ASC) {
+    articleCollection(limit: 3, order: sys_firstPublishedAt_DESC) {
       items {
         ...ArticleFragment
       }
@@ -179,7 +179,7 @@ export const GLOBAL_QUERY = /* GraphQL */ `
 
 export const ALL_ARTICLES_QUERY = /* GraphQL */ `
   query getAllArticles {
-    articleCollection(order: sys_publishedAt_ASC) {
+    articleCollection(order: sys_firstPublishedAt_DESC) {
       items {
         ...ArticlePreviewFragment
       }
