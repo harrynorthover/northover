@@ -19,7 +19,7 @@ export async function GET(req: Request): Promise<Response> {
   }
 
   if (slug) {
-    return NextResponse.redirect(`http://localhost:3000${slug}`);
+    return NextResponse.redirect(`${slug}`);
   }
 
   return NextResponse.json({ message: "Preview mode enabled" });

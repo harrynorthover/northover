@@ -3,6 +3,7 @@ import { format } from "date-fns";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 import ArticleAuthors from "@/components/ArticleAuthors";
 import { StructuredData } from "@/components/StructuredData";
@@ -19,7 +20,16 @@ export async function generateMetadata({
   params,
 }: ArticlePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const { title, introduction, url, tags, heroImage } = await getArticle(slug);
+  const article = await getArticle(slug);
+
+  if (!article) {
+    return {
+      title: "Article not found",
+      description: "The article you are looking for does not exist.",
+    };
+  }
+
+  const { title, introduction, url, tags, heroImage } = article;
 
   return {
     title,
@@ -49,6 +59,12 @@ export async function generateMetadata({
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const { slug } = await params;
+  const article = await getArticle(slug);
+
+  if (!article) {
+    return notFound();
+  }
+
   const {
     heroImage,
     title,
@@ -67,7 +83,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     datePublished: publishedAt,
     dateModified: publishedAt,
     url,
-    image: heroImage?.url ?? `${process.env.NEXT_PUBLIC_SITE_URL}/api/og/post?title=${title}`,
+    image:
+      heroImage?.url ??
+      `${process.env.NEXT_PUBLIC_SITE_URL}/api/og/post?title=${title}`,
     author: authors.length
       ? {
           "@type": "Person",
@@ -84,7 +102,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     <article className="max-w-5xl mt-4">
       <StructuredData data={sturcutredData} />
       <header className="max-w-5xl border-b border-b-gray-800 pb-4 mb-4">
-        <Link href="/articles" className="text-sm font-light text-gray-100 mb-10">
+        <Link
+          href="/articles"
+          className="text-sm font-light text-gray-100 mb-10"
+        >
           ← Back to articles
         </Link>
 

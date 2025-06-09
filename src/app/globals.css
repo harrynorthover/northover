@@ -23,7 +23,11 @@
   }
 
   h1 {
-    @apply text-3xl;
+    @apply text-3xl leading-[1.5];
+  }
+
+  section h1 {
+    @apply mt-12;
   }
 
   h2 {
@@ -51,7 +55,9 @@
   }
 
   p,
-  span {
+  span,
+  ol,
+  ul {
     @apply text-slate-200 font-light text-base;
     @apply mb-4;
     @apply leading-8;
@@ -110,7 +116,7 @@
   }
 
   li {
-    @apply mb-0;
+    @apply mb-0 list-item list-disc ml-10 pl-2;
 
     p {
       @apply mb-1;
