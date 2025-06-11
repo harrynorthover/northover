@@ -102,7 +102,7 @@ export default async function Home() {
         <p className="max-w-4xl">{general.introduction}</p>
       </header>
 
-      <section className="my-8 mb-4 py-8 pb-0 xl:max-w-[50%]">
+      <section className="my-8 mb-4 py-8 pb-0 xl:max-w-[70%]">
         <ArticleList articles={articleCollection.items} />
         <Link href="/articles">View more →</Link>
       </section>
