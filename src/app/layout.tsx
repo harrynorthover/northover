@@ -1,8 +1,8 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Inter, Lato, Merriweather } from "next/font/google";
 import { draftMode } from "next/headers";
-
 import "./globals.css";
 
 import { getGlobalContent } from "@/lib/api";
@@ -67,6 +67,7 @@ export default async function RootLayout({
             </p>
           </footer>
           <Analytics />
+          <GoogleAnalytics gaId="G-FJWFYFG63V" />
           <SpeedInsights />
         </main>
       </body>
